@@ -57,7 +57,15 @@ const Landing = () => {
     const temp = datas.Date.replace('-1854', '');
     return temp.replace('-', ' ').split(' ').reverse().join(' ');
   });
-  console.log(dates);
+
+  const attacks = testng.map((data) => data.Attack);
+
+  const deaths = testng.map((data) => data.Death);
+
+  const total = testng.map((data) => Number(data.Attack) + Number(data.Death));
+  console.log('dates', dates);
+  console.log('attacks', attacks);
+  console.log('Total Attacks and deaths', total);
 
 
 
@@ -97,103 +105,26 @@ const Landing = () => {
             <Plot
               data={[
                 {
-                  type: 'bar',
+                  type: 'table',
                   name: 'Death',
+                  columnwidth: [150,200,200,150],
+                  columnorder: [0,1,2,3],
+                  header: {
+                    values: testng.columns,
+                    align: "center",
+                    line: {width: 1, color: 'rgb(50, 50, 50)'},
+                    fill: {color: ['rgb(235, 100, 230)']},
+                    font: {family: "Arial", size: 11, color: "white"}
+                  },
+                  cells: {
+                    values: [dates, attacks, deaths],
+                    align: ["center", "center"],
+                    line: {color: "black", width: 1},
+                    fill: {color: ['rgb(235, 193, 238)', 'rgba(228, 222, 249, 0.65)']},
+                    font: {family: "Arial", size: 10, color: ["black"]}
+                  },
                   x: dates,
-                  y: [
-                    1,
-                    0,
-                    2,
-                    0,
-                    0,
-                    2,
-                    0,
-                    0,
-                    1,
-                    0,
-                    1,
-                    2,
-                    3,
-                    70,
-                    127,
-                    76,
-                    71,
-                    45,
-                    37,
-                    32,
-                    30,
-                    24,
-                    18,
-                    15,
-                    6,
-                    13,
-                    6,
-                    8,
-                    6,
-                    5,
-                    2,
-                    3,
-                    0,
-                    0,
-                    2,
-                    3,
-                    0,
-                    0,
-                    2,
-                    0,
-                    2,
-                    1,
-                  ],
-                  mode: 'markers+text',
-                },
-                {
-                  type: 'bar',
-                  name: 'Total Deaths + Attacks',
-                  x: dates,
-                  y: [
-                    2,
-                    1,
-                    3,
-                    0,
-                    1,
-                    3,
-                    0,
-                    1,
-                    2,
-                    1,
-                    2,
-                    10,
-                    59,
-                    213,
-                    243,
-                    130,
-                    117,
-                    81,
-                    57,
-                    60,
-                    42,
-                    35,
-                    23,
-                    20,
-                    7,
-                    16,
-                    6,
-                    9,
-                    10,
-                    7,
-                    5,
-                    3,
-                    0,
-                    2,
-                    3,
-                    4,
-                    1,
-                    1,
-                    3,
-                    1,
-                    2,
-                    1,
-                  ],
+                  y: deaths,
                   mode: 'markers+text',
                 },
               ]}
@@ -203,7 +134,7 @@ const Landing = () => {
                 title: 'Cholera Deaths',
                 xaxis: {
                   title: {
-                    text: '\n\nDate (MM-DD-YYY)',
+                    text: '\n\nDate (DD-MM)',
                     font: {
                       family: 'Courier New, monospace',
                       size: 28,
