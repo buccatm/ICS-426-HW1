@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Button, Card, Col, Container, Row } from 'react-bootstrap';
+import { Button, Card, Col, Container, Row, Tab, Tabs } from 'react-bootstrap';
 import Plot from 'react-plotly.js';
 import * as d3 from 'd3-dsv';
 import { PAGE_IDS } from '../utilities/PageIDs';
@@ -8,6 +8,7 @@ import { PAGE_IDS } from '../utilities/PageIDs';
 const Landing = () => {
   const [showTB1, setShowTB1] = useState(true);
   const [showTB2, setShowTB2] = useState(false);
+  const [key, setKey] = useState('Part 1');
   const testng = d3.tsvParse('Date\tAttack\tDeath\n' +
       '19-Aug-1854\t1\t1\n' +
       '20-Aug-1854\t1\t0\n' +
@@ -59,12 +60,26 @@ const Landing = () => {
   });
 
   const attacks = testng.map((data) => data.Attack);
+  const test = [];
+  const test2 = [];
+  testng.forEach(function (items) {
+    if (items.Date.includes('Aug')) {
+      test.push(items.Attack);
+    }
+  });
 
+  dates.forEach(function (items) {
+    if (items.includes('Aug')) {
+      test2.push(items);
+    }
+  });
+
+  console.log(test2);
   const deaths = testng.map((data) => data.Death);
 
   const total = testng.map((data) => Number(data.Attack) + Number(data.Death));
 
- // const totalAttacks = [];
+  // const totalAttacks = [];
 
   let startTotalAttacks = 0;
   const totalAttacks = testng.map((items) => {
@@ -99,148 +114,153 @@ const Landing = () => {
 
   return (
     <Container id={PAGE_IDS.LANDING} className="py-3">
-      <h1 style={{ textAlign: 'center' }}>My Graph</h1>
-      <Row md="auto" lg="auto" xs="auto">
-        <Col md={3} lg={3} xs={1}>
-          <Card>
-            <Card.Title>
-              <h4 style={{ textAlign: 'center' }}>Put Setting stuffs here</h4>
-            </Card.Title>
-            <Card.Body>
-              <Button
-                variant="outline-primary"
-                style={{ marginBottom: '10px' }}
-                onClick={update}
-              >
-                {(showTB1) ? 'Show Cholera Attacks Table' : 'Show Cholera Deaths Table'}
-              </Button>
-            </Card.Body>
-          </Card>
-
-        </Col>
-        <Col md={1} lg={1} xs={1}>
-          {(showTB1) ? (
-            <Plot
-              data={[
-                {
-                  type: 'table',
-                  name: 'Death',
-                  columnwidth: [50, 50, 50, 50, 50],
-                  columnorder: [0, 1, 2, 3, 4],
-                  header: {
-                    values: [...testng.columns, 'Total Attacks', 'Total Deaths'],
-                    align: 'center',
-                    line: { width: 1, color: 'rgb(50, 50, 50)' },
-                    fill: { color: ['rgb(235, 100, 230)'] },
-                    font: { family: 'Arial', size: 11, color: 'white' },
-                  },
-                  cells: {
-                    values: [dates, attacks, deaths, totalAttacks, totalDeaths],
-                    align: ['center', 'center'],
-                    line: { color: 'black', width: 1 },
-                    fill: { color: ['rgb(235, 193, 238)', 'rgba(228, 222, 249, 0.65)'] },
-                    font: { family: 'Arial', size: 10, color: ['black'] },
-                  },
-                  x: dates,
-                  y: deaths,
-                  mode: 'markers+text',
-                },
-              ]}
-              layout={{
-                width: 1020,
-                height: 540,
-                title: 'Cholera Deaths (1854)',
-                xaxis: {
-                  title: {
-                    text: '\n\nDate (DD-MM)',
-                    font: {
-                      family: 'Courier New, monospace',
-                      size: 28,
-                      color: '#7f7f7f',
+      <Tabs
+        id="controlled-tab-example"
+        activeKey={key}
+        onSelect={(k) => setKey(k)}
+        className="mb-3"
+      >
+        <Tab eventKey="home" title="Part 1">
+          <Container>
+            <h1 style={{ textAlign: 'center' }}>Part 1</h1>
+            <Row xxl="auto" xl="auto" lg="auto" md="auto" sm="auto" xs={1}>
+              <Col md={4} lg={4} xl={4} xxl={4} style={{ marginRight: '4rem' }}>
+                <Plot
+                  data={[
+                    {
+                      type: 'table',
+                      name: 'Death',
+                      columnwidth: [50, 50, 50, 50, 50],
+                      columnorder: [0, 1, 2, 3, 4],
+                      header: {
+                        values: [...testng.columns, 'Total Attacks', 'Total Deaths'],
+                        align: 'center',
+                        line: { width: 1, color: 'rgb(50, 50, 50)' },
+                        fill: { color: ['rgb(81,88,217)'] },
+                        font: { family: 'Arial', size: 11, color: 'white' },
+                      },
+                      cells: {
+                        values: [dates, attacks, deaths, totalAttacks, totalDeaths],
+                        align: ['left', 'right', 'right', 'right', 'right'],
+                        line: { color: 'black', width: 1 },
+                        fill: { color: ['rgba(228, 222, 249, 0.65)'] },
+                        font: { family: 'Arial', size: 10, color: ['black'] },
+                      },
+                      x: dates,
+                      y: deaths,
+                      mode: 'markers+text',
                     },
-                  },
-                },
-                yaxis: {
-                  title: {
-                    text: 'Number of Deaths',
-                    font: {
-                      family: 'Courier New, monospace',
-                      size: 28,
-                      color: '#7f7f7f',
+                  ]}
+                  layout={{
+                    width: 500,
+                    height: 540,
+                    xaxis: {
+                      title: {
+                        text: '\n\nDate (DD-MM)',
+                        font: {
+                          family: 'Courier New, monospace',
+                          size: 28,
+                          color: '#7f7f7f',
+                        },
+                      },
                     },
-                  },
-                } }}
-            />
-          ) : (
-            <Plot
-              data={[
-                {
-                  mode: 'lines+markers',
-                  name: 'Attacks',
-                  x: dates,
-                  y: attacks,
-                  text: [dates, attacks],
-                  textposition: 'top',
-                },
-                {
-                  mode: 'lines+markers',
-                  name: 'Total Attacks',
-                  x: dates,
-                  y: totalAttacks,
-                  text: [dates, attacks],
-                  textposition: 'top',
-                },
-                {
-                  mode: 'lines+markers',
-                  name: 'Deaths',
-                  x: dates,
-                  y: deaths,
-                  text: [dates, attacks],
-                  textposition: 'top',
-                },
-                {
-                  mode: 'lines+markers',
-                  name: 'Total Deaths',
-                  x: dates,
-                  y: totalDeaths,
-                  text: [dates, attacks],
-                  textposition: 'top',
-                },
-              ]}
-              layout={{
-                width: '1020',
-                height: '500',
-                hovermode: 'x',
-                title: 'Cholera Attacks',
-                xaxis: {
-                  tickmode: 'linear',
-                  tick0: 0,
-                  dtick: 4,
-                  title: {
-                    text: 'Date (MM-DD-YYYY)',
-                    font: {
-                      family: 'Courier New, monospace',
-                      size: 28,
-                      color: '#7f7f7f',
+                    yaxis: {
+                      title: {
+                        text: 'Number of Deaths',
+                        font: {
+                          family: 'Courier New, monospace',
+                          size: 28,
+                          color: '#7f7f7f',
+                        },
+                      },
+                    } }}
+                />
+              </Col>
+              <div className="d-flex" style={{ height: '35rem' }}>
+                <div className="vr" />
+              </div>
+              <Col md={6} lg={6} xl={6} xxl={6}>
+                <Plot
+                  data={[
+                    {
+                      mode: 'lines+markers',
+                      name: 'Attacks',
+                      x: dates,
+                      y: attacks,
+                      text: [dates, attacks],
+                      textposition: 'top',
                     },
-                  },
-                },
-                yaxis: {
-                  title: {
-                    text: 'Attacks',
-                    font: {
-                      family: 'Courier New, monospace',
-                      size: 28,
-                      color: '#7f7f7f',
+                    {
+                      mode: 'lines+markers',
+                      name: 'Total Attacks',
+                      x: dates,
+                      y: totalAttacks,
+                      text: [dates, attacks],
+                      textposition: 'top',
                     },
-                  },
-                },
-              }}
-            />
-          )}
-
-        </Col>
-      </Row>
+                    {
+                      mode: 'lines+markers',
+                      name: 'Deaths',
+                      x: dates,
+                      y: deaths,
+                      text: [dates, attacks],
+                      textposition: 'top',
+                    },
+                    {
+                      mode: 'lines+markers',
+                      name: 'Total Deaths',
+                      x: dates,
+                      y: totalDeaths,
+                      text: [dates, attacks],
+                      textposition: 'top',
+                    },
+                  ]}
+                  layout={{
+                    width: '960',
+                    height: '540',
+                    hovermode: 'x',
+                    title: {
+                      text: 'Cholera Deaths (1854)',
+                      font: {
+                        family: 'Courier New, monospace',
+                        size: 38,
+                        color: '#7f7f7f',
+                      },
+                    },
+                    xaxis: {
+                      tickmode: 'linear',
+                      tick0: 0,
+                      dtick: 4,
+                      title: {
+                        text: 'Date (MM-DD)',
+                        font: {
+                          family: 'Courier New, monospace',
+                          size: 28,
+                          color: '#7f7f7f',
+                        },
+                      },
+                    },
+                    yaxis: {
+                      title: {
+                        text: 'Number of Attacks',
+                        font: {
+                          family: 'Courier New, monospace',
+                          size: 28,
+                          color: '#7f7f7f',
+                        },
+                      },
+                    },
+                  }}
+                />
+              </Col>
+            </Row>
+          </Container>
+        </Tab>
+        <Tab eventKey="profile" title="Profile">
+          test
+        </Tab>
+        <Tab eventKey="contact" title="Contact" />
+      </Tabs>
     </Container>
   );
 };
