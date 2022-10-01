@@ -63,11 +63,29 @@ const Landing = () => {
   const deaths = testng.map((data) => data.Death);
 
   const total = testng.map((data) => Number(data.Attack) + Number(data.Death));
+
+ // const totalAttacks = [];
+
+  let startTotalAttacks = 0;
+  const totalAttacks = testng.map((items) => {
+    const tot = startTotalAttacks + Number(items.Attack);
+    startTotalAttacks = tot;
+    return tot;
+  });
+
+  let startTotalDeaths = 0;
+  const totalDeaths = testng.map((items) => {
+    const tot = Number(items.Death) + startTotalDeaths;
+    startTotalDeaths = tot;
+    return tot;
+  });
+
+  console.log(testng);
   console.log('dates', dates);
   console.log('attacks', attacks);
   console.log('Total Attacks and deaths', total);
-
-
+  console.log('Total Attacks', totalAttacks);
+  console.log('Total Deaths', totalDeaths);
 
   const update = () => {
     if (showTB1 === true) {
@@ -107,21 +125,21 @@ const Landing = () => {
                 {
                   type: 'table',
                   name: 'Death',
-                  columnwidth: [150,200,200,150],
-                  columnorder: [0,1,2,3],
+                  columnwidth: [50, 50, 50, 50, 50],
+                  columnorder: [0, 1, 2, 3, 4],
                   header: {
-                    values: testng.columns,
-                    align: "center",
-                    line: {width: 1, color: 'rgb(50, 50, 50)'},
-                    fill: {color: ['rgb(235, 100, 230)']},
-                    font: {family: "Arial", size: 11, color: "white"}
+                    values: [...testng.columns, 'Total Attacks', 'Total Deaths'],
+                    align: 'center',
+                    line: { width: 1, color: 'rgb(50, 50, 50)' },
+                    fill: { color: ['rgb(235, 100, 230)'] },
+                    font: { family: 'Arial', size: 11, color: 'white' },
                   },
                   cells: {
-                    values: [dates, attacks, deaths],
-                    align: ["center", "center"],
-                    line: {color: "black", width: 1},
-                    fill: {color: ['rgb(235, 193, 238)', 'rgba(228, 222, 249, 0.65)']},
-                    font: {family: "Arial", size: 10, color: ["black"]}
+                    values: [dates, attacks, deaths, totalAttacks, totalDeaths],
+                    align: ['center', 'center'],
+                    line: { color: 'black', width: 1 },
+                    fill: { color: ['rgb(235, 193, 238)', 'rgba(228, 222, 249, 0.65)'] },
+                    font: { family: 'Arial', size: 10, color: ['black'] },
                   },
                   x: dates,
                   y: deaths,
@@ -131,7 +149,7 @@ const Landing = () => {
               layout={{
                 width: 1020,
                 height: 540,
-                title: 'Cholera Deaths',
+                title: 'Cholera Deaths (1854)',
                 xaxis: {
                   title: {
                     text: '\n\nDate (DD-MM)',
@@ -157,103 +175,47 @@ const Landing = () => {
             <Plot
               data={[
                 {
-                  type: 'bar',
-                  name: 'Total',
-                  x: [
-                    '19-Aug-1854',
-                    '20-Aug-1854',
-                    '21-Aug-1854',
-                    '22-Aug-1854',
-                    '23-Aug-1854',
-                    '24-Aug-1854',
-                    '25-Aug-1854',
-                    '26-Aug-1854',
-                    '27-Aug-1854',
-                    '28-Aug-1854',
-                    '29-Aug-1854',
-                    '30-Aug-1854',
-                    '31-Aug-1854',
-                    '1-Sep-1854',
-                    '2-Sep-1854',
-                    '3-Sep-1854',
-                    '4-Sep-1854',
-                    '5-Sep-1854',
-                    '6-Sep-1854',
-                    '7-Sep-1854',
-                    '8-Sep-1854',
-                    '9-Sep-1854',
-                    '10-Sep-1854',
-                    '11-Sep-1854',
-                    '12-Sep-1854',
-                    '13-Sep-1854',
-                    '14-Sep-1854',
-                    '15-Sep-1854',
-                    '16-Sep-1854',
-                    '17-Sep-1854',
-                    '18-Sep-1854',
-                    '19-Sep-1854',
-                    '20-Sep-1854',
-                    '21-Sep-1854',
-                    '22-Sep-1854',
-                    '23-Sep-1854',
-                    '24-Sep-1854',
-                    '25-Sep-1854',
-                    '26-Sep-1854',
-                    '27-Sep-1854',
-                    '28-Sep-1854',
-                    '29-Sep-1854',
-                  ],
-                  y: [
-                    1,
-                    1,
-                    1,
-                    0,
-                    1,
-                    1,
-                    0,
-                    1,
-                    1,
-                    1,
-                    1,
-                    8,
-                    56,
-                    143,
-                    116,
-                    54,
-                    46,
-                    36,
-                    20,
-                    28,
-                    12,
-                    11,
-                    5,
-                    5,
-                    1,
-                    3,
-                    0,
-                    1,
-                    4,
-                    2,
-                    3,
-                    0,
-                    0,
-                    2,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    1,
-                    0,
-                    0,
-                  ],
+                  mode: 'lines+markers',
+                  name: 'Attacks',
+                  x: dates,
+                  y: attacks,
+                  text: [dates, attacks],
+                  textposition: 'top',
+                },
+                {
+                  mode: 'lines+markers',
+                  name: 'Total Attacks',
+                  x: dates,
+                  y: totalAttacks,
+                  text: [dates, attacks],
+                  textposition: 'top',
+                },
+                {
+                  mode: 'lines+markers',
+                  name: 'Deaths',
+                  x: dates,
+                  y: deaths,
+                  text: [dates, attacks],
+                  textposition: 'top',
+                },
+                {
+                  mode: 'lines+markers',
+                  name: 'Total Deaths',
+                  x: dates,
+                  y: totalDeaths,
+                  text: [dates, attacks],
+                  textposition: 'top',
                 },
               ]}
               layout={{
-                width: 1020,
-                height: 540,
+                width: '1020',
+                height: '500',
+                hovermode: 'x',
                 title: 'Cholera Attacks',
                 xaxis: {
+                  tickmode: 'linear',
+                  tick0: 0,
+                  dtick: 4,
                   title: {
                     text: 'Date (MM-DD-YYYY)',
                     font: {
