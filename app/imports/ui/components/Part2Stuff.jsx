@@ -4,7 +4,7 @@ import Plot from 'react-plotly.js';
 import * as d3 from 'd3-dsv';
 
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
-const Part1Stuff = () => {
+const Part2Stuff = () => {
   const testng = d3.tsvParse('Date\tAttack\tDeath\n' +
       '19-Aug-1854\t1\t1\n' +
       '20-Aug-1854\t1\t0\n' +
@@ -245,4 +245,4 @@ const Part1Stuff = () => {
   );
 };
 
-export default Part1Stuff;
+export default Part2Stuff;

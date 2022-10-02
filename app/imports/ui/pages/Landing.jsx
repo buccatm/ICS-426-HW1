@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
-import {Button, Card, Col, Container, Image, ListGroup, Row, Tab, Tabs} from 'react-bootstrap';
-import Plot from 'react-plotly.js';
-import * as d3 from 'd3-dsv';
+import { Card, Col, Container, Image, ListGroup, Row, Tab, Tabs } from 'react-bootstrap';
 import { PAGE_IDS } from '../utilities/PageIDs';
 import Part1Stuff from '../components/Part1Stuff';
+import Part2Stuff from '../components/Part2Stuff';
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => {
@@ -33,8 +32,8 @@ const Landing = () => {
           <Tab eventKey="Home" title="Part 1">
             <Part1Stuff />
           </Tab>
-          <Tab eventKey="part 2" title="Profile">
-            test
+          <Tab eventKey="part 2" title="Part 2">
+            <Part2Stuff />
           </Tab>
           <Tab eventKey="part 3" title="Contact" />
         </Tabs>
