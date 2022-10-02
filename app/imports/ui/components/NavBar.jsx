@@ -10,7 +10,7 @@ const NavBar = () => {
   const menuStyle = { marginBottom: '10px' };
   return (
     <Navbar bg="light" expand="lg" style={menuStyle}>
-      <Container>
+      <Container fluid>
         <Navbar.Brand id={COMPONENT_IDS.NAVBAR_LANDING_PAGE} as={NavLink} to="/"><h1>Project 1 1854 London Cholera Data Visualization</h1></Navbar.Brand>
       </Container>
     </Navbar>

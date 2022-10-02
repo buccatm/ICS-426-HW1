@@ -49,7 +49,6 @@ const Part1Stuff = () => {
       '28-Sep-1854\t0\t2\n' +
       '29-Sep-1854\t0\t1');
 
-  console.log(testng);
   const dates = testng.map((datas) => {
     const temp = datas.Date.replace('-1854', '');
     return temp.replace('-', ' ').split(' ').reverse().join(' ');
@@ -70,7 +69,6 @@ const Part1Stuff = () => {
     }
   });
 
-  console.log(test2);
   const deaths = testng.map((data) => data.Death);
 
   const total = testng.map((data) => Number(data.Attack) + Number(data.Death));
@@ -90,14 +88,6 @@ const Part1Stuff = () => {
     startTotalDeaths = tot;
     return tot;
   });
-
-  console.log(testng);
-  console.log('dates', dates);
-  console.log('attacks', attacks);
-  console.log('Total Attacks and deaths', total);
-  console.log('Total Attacks', totalAttacks);
-  console.log('Total Deaths', totalDeaths);
-
   return (
     <Container>
       <h1 style={{ textAlign: 'left' }}>Cholera Fatalities 1854</h1>
