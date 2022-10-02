@@ -10,6 +10,7 @@
     "graphql": "^16.5.0",
     "meteor-node-stubs": "^1.2.3",
     "moment": "^2.29.4",
+    "numeral": "^2.0.6",
     "plotly.js": "^2.14.0",
     "prop-types": "^15.7.2",
     "react": "^18.2.0",
