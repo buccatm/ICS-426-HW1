@@ -3,6 +3,7 @@ import { Card, Col, Container, Image, ListGroup, Row, Tab, Tabs } from 'react-bo
 import { PAGE_IDS } from '../utilities/PageIDs';
 import Part1Stuff from '../components/Part1Stuff';
 import Part2Stuff from '../components/Part2Stuff';
+import UKcensus1851Set from "../components/UKcensus1851Set";
 
 /* A simple static component to render some text for the landing page. */
 const Landing = () => {
@@ -34,6 +35,8 @@ const Landing = () => {
           </Tab>
           <Tab eventKey="part 2" title="Part 2">
             <Part2Stuff />
+            <br />
+            <UKcensus1851Set />
           </Tab>
           <Tab eventKey="part 3" title="Contact" />
         </Tabs>

@@ -22,7 +22,8 @@ const Part2Stuff = () => {
 
   return (
     <Container fluid>
-      <h1 style={{ textAlign: 'left' }}>Part 2</h1>
+      <h1 style={{ textAlign: 'left' }}>Naples Cholera Age Gender Data 1884-1911</h1>
+      <br />
       <Row xxl="auto" xl="auto" lg="auto" md="auto" sm="auto" xs={1}>
         <Col md={4} lg={4} xl={4} xxl={4} style={{ marginRight: '4rem' }}>
           <Plot
