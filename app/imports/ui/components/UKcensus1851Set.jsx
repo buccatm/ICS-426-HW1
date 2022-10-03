@@ -1,5 +1,5 @@
-import React from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import React, { useState } from 'react';
+import { Container, Col, Row, Button } from 'react-bootstrap';
 import Plot from 'react-plotly.js';
 import * as d3 from 'd3-dsv';
 
@@ -17,13 +17,14 @@ const UKcensus1851Set = () => {
       '60 to 69,351893,399019\n' +
       '70 to 79,166194,199326\n' +
       '80+,40772,55704');
-  console.log(testng);
 
   const ageRange = testng.map((data) => data.age);
   ageRange.push('<b>Total</b>');
   const male = testng.map((data) => numeral(data.male).format('0,0'));
+  const temp1 = testng.map((data) => numeral(data.male).format('0,0'));
   const pieChartMale = testng.map((data) => data.male);
   const female = testng.map((data) => numeral(data.female).format('0,0'));
+  const temp2 = testng.map((data) => numeral(data.female).format('0,0'));
   const pieChartFemale = testng.map((data) => data.female);
 
   const totalMale = (data) => {
@@ -48,8 +49,21 @@ const UKcensus1851Set = () => {
 
   const pieChartTotalMale = numeral(male[male.length - 1]).value();
   const pieChartTotalFemale = numeral(female[female.length - 1]).value();
-  console.log(ageRange, male, female);
 
+  const [showIndiv, setShowIndiv] = useState('d-block');
+  const [showOverAll, setShowOverAll] = useState('d-none');
+
+  console.log(pieChartTotalFemale, pieChartTotalMale);
+
+  const hide = () => {
+    setShowIndiv('d-none');
+    setShowOverAll('d-block');
+  };
+  const show = () => {
+    setShowIndiv('d-block');
+    setShowOverAll('d-none');
+
+  };
   return (
     <Container fluid>
       <h1 style={{ textAlign: 'left' }}>UK Census 1851 Data Set</h1>
@@ -85,7 +99,7 @@ const UKcensus1851Set = () => {
             layout={
               {
                 width: 500,
-                height: 600,
+                height: 500,
                 title: {
                   text: 'Naples in the Time of Cholera 1884-1911 DataSheet',
                   font: {
@@ -97,11 +111,17 @@ const UKcensus1851Set = () => {
               }
             }
           />
+          <Row className="justify-content-center" xxl="auto" xl="auto" lg="auto" md="auto" sm="auto">
+            <Col>
+              {showIndiv === 'd-block' ? <Button onClick={() => hide()}>Compare Data</Button> : <Button onClick={() => show()}>Show Individual Table</Button>}
+            </Col>
+          </Row>
+
         </Col>
         <div className="d-flex" style={{ height: '30rem' }}>
           <div className="vr" />
         </div>
-        <Col xxl="5" xl="5" lg="5" md="5" sm="auto">
+        <Col xxl="5" xl="5" lg="5" md="5" sm="auto" className={showIndiv}>
           <Plot
             data={[
               {
@@ -116,6 +136,26 @@ const UKcensus1851Set = () => {
             ]}
             layout={
               {
+                yaxis: {
+                  title: {
+                    text: 'Number of Inhabitants',
+                    font: {
+                      family: 'Courier New, monospace',
+                      size: 18,
+                      color: '#7f7f7f',
+                    },
+                  },
+                },
+                xaxis: {
+                  title: {
+                    text: 'Age Range',
+                    font: {
+                      family: 'Courier New, monospace',
+                      size: 18,
+                      color: '#7f7f7f',
+                    },
+                  },
+                },
                 title: {
                   text: 'Census Age Data for Men (1851)',
                   font: {
@@ -130,7 +170,7 @@ const UKcensus1851Set = () => {
             }
           />
         </Col>
-        <Col xxl="1" xl="1" lg="1" md="1" sm="1">
+        <Col xxl="1" xl="1" lg="1" md="1" sm="1" className={showIndiv}>
           <Plot
             data={[
               {
@@ -147,7 +187,7 @@ const UKcensus1851Set = () => {
               {
                 yaxis: {
                   title: {
-                    text: 'Deaths per 10,000 Inhabitants',
+                    text: 'Number of Inhabitants',
                     font: {
                       family: 'Courier New, monospace',
                       size: 18,
@@ -175,6 +215,127 @@ const UKcensus1851Set = () => {
                 },
                 height: 550,
                 width: 500,
+              }
+            }
+          />
+        </Col>
+        <Col md={6} lg={6} xl={6} xxl={6} className={showOverAll}>
+          <Plot
+            data={[
+              {
+                x: ageRange,
+                y: temp1,
+                name: 'Male',
+                type: 'bar',
+                marker: {
+                  color: '#47B5FF',
+                },
+              },
+              {
+                x: ageRange,
+                y: temp2,
+                name: 'Female',
+                type: 'bar',
+                marker: {
+                  color: '#FF74B1',
+                },
+              },
+            ]}
+            layout={
+              {
+                legend: {
+                  orientation: 'h',
+                },
+                width: 1000,
+                height: 500,
+                title: {
+                  text: 'Naples in the Time of Cholera 1884-1911',
+                  font: {
+                    family: 'Courier New, monospace',
+                    size: 18,
+                    color: '#7f7f7f',
+                  },
+                },
+                xaxis: {
+                  title: {
+                    text: 'Age Range',
+                    font: {
+                      family: 'Courier New, monospace',
+                      size: 18,
+                      color: '#7f7f7f',
+                    },
+                  },
+                },
+                yaxis: {
+                  title: {
+                    text: 'Number of Inhabitants',
+                    font: {
+                      family: 'Courier New, monospace',
+                      size: 18,
+                      color: '#7f7f7f',
+                    },
+                  },
+                },
+              }
+            }
+          />
+          <Plot
+            data={[
+              {
+                x: ['male'],
+                y: [male[male.length - 1]],
+                name: 'Male',
+                type: 'bar',
+                marker: {
+                  color: '#47B5FF',
+                },
+              },
+              {
+                x: ['female'],
+                y: [female[female.length - 1]],
+                name: 'Female',
+                type: 'bar',
+                marker: {
+                  color: '#FF74B1',
+                },
+              },
+            ]}
+            layout={
+              {
+                legend: {
+                  orientation: 'h',
+                },
+                barmode: 'group',
+                width: 500,
+                height: 500,
+                title: {
+                  text: 'Naples in the Time of Cholera 1884-1911',
+                  font: {
+                    family: 'Courier New, monospace',
+                    size: 18,
+                    color: '#7f7f7f',
+                  },
+                },
+                xaxis: {
+                  title: {
+                    text: 'Age Range',
+                    font: {
+                      family: 'Courier New, monospace',
+                      size: 18,
+                      color: '#7f7f7f',
+                    },
+                  },
+                },
+                yaxis: {
+                  title: {
+                    text: 'Number of Inhabitants',
+                    font: {
+                      family: 'Courier New, monospace',
+                      size: 18,
+                      color: '#7f7f7f',
+                    },
+                  },
+                },
               }
             }
           />
