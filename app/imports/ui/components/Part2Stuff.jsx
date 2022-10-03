@@ -99,7 +99,7 @@ const Part2Stuff = () => {
                   orientation: 'h',
                 },
                 width: 1000,
-                height: 600,
+                height: 500,
                 title: {
                   text: 'Naples in the Time of Cholera 1884-1911',
                   font: {

@@ -43,9 +43,11 @@ const UKcensus1851Set = () => {
     });
     return numeral(temp).format('0,0');
   };
-
   male.push(totalMale(testng));
   female.push(totalFemale(testng));
+
+  const pieChartTotalMale = numeral(male[male.length - 1]).value();
+  const pieChartTotalFemale = numeral(female[female.length - 1]).value();
   console.log(ageRange, male, female);
 
   return (
@@ -53,7 +55,7 @@ const UKcensus1851Set = () => {
       <h1 style={{ textAlign: 'left' }}>UK Census 1851 Data Set</h1>
       <br />
       <Row xxl="auto" xl="auto" lg="auto" md="auto" sm="auto" xs={1}>
-        <Col md={4} lg={4} xl={4} xxl={4} style={{ marginRight: '4rem' }}>
+        <Col style={{ marginRight: '4rem' }} xxl="4" xl="4" lg="4" md="4" sm="auto">
           <Plot
             data={[
               {
@@ -99,7 +101,87 @@ const UKcensus1851Set = () => {
         <div className="d-flex" style={{ height: '30rem' }}>
           <div className="vr" />
         </div>
-        <Col md={6} lg={6} xl={6} xxl={6}>
+        <Col xxl="5" xl="5" lg="5" md="5" sm="auto">
+          <Plot
+            data={[
+              {
+                x: ageRange,
+                y: male,
+                name: 'Male',
+                type: 'bar',
+                marker: {
+                  color: '#47B5FF',
+                },
+              },
+            ]}
+            layout={
+              {
+                title: {
+                  text: 'Census Age Data for Men (1851)',
+                  font: {
+                    family: 'Courier New, monospace',
+                    size: 14,
+                    color: '#7f7f7f',
+                  },
+                },
+                height: 550,
+                width: 500,
+              }
+            }
+          />
+        </Col>
+        <Col xxl="1" xl="1" lg="1" md="1" sm="1">
+          <Plot
+            data={[
+              {
+                x: ageRange,
+                y: female,
+                name: 'Female',
+                type: 'bar',
+                marker: {
+                  color: '#FF74B1',
+                },
+              },
+            ]}
+            layout={
+              {
+                yaxis: {
+                  title: {
+                    text: 'Deaths per 10,000 Inhabitants',
+                    font: {
+                      family: 'Courier New, monospace',
+                      size: 18,
+                      color: '#7f7f7f',
+                    },
+                  },
+                },
+                xaxis: {
+                  title: {
+                    text: 'Age Range',
+                    font: {
+                      family: 'Courier New, monospace',
+                      size: 18,
+                      color: '#7f7f7f',
+                    },
+                  },
+                },
+                title: {
+                  text: 'Census Age Data for Women (1851)',
+                  font: {
+                    family: 'Courier New, monospace',
+                    size: 14,
+                    color: '#7f7f7f',
+                  },
+                },
+                height: 550,
+                width: 500,
+              }
+            }
+          />
+        </Col>
+      </Row>
+      <Row xxl="auto" xl="auto" lg="auto" md="auto" sm="auto" xs={1}>
+        <Col>
           <Plot
             data={[
               {
@@ -110,10 +192,26 @@ const UKcensus1851Set = () => {
                 hole: '.4',
                 textposition: 'inside',
                 textinfo: 'label+percent+name',
-
                 domain: {
                   row: 0,
                   column: 0,
+                },
+              },
+              {
+                values: [pieChartTotalMale, pieChartTotalFemale],
+                labels: ['Male', 'Female'],
+                type: 'pie',
+                name: 'Total',
+                hole: '.4',
+                marker: {
+                  colors: ['#47B5FF', '#FF74B1'],
+                },
+                font: { family: 'Arial', size: 25, color: ['black'] },
+                textposition: 'inside',
+                textinfo: 'label+percent+name',
+                domain: {
+                  row: 0,
+                  column: 1,
                 },
               },
               {
@@ -125,8 +223,8 @@ const UKcensus1851Set = () => {
                 hole: '.4',
                 textinfo: 'label+percent+name',
                 domain: {
-                  row: 1,
-                  column: 1,
+                  row: 0,
+                  column: 2,
                 },
               },
             ]}
@@ -136,41 +234,49 @@ const UKcensus1851Set = () => {
                 annotations: [
                   {
                     font: {
-                      size: 20,
+                      size: 30,
                     },
                     showarrow: false,
                     text: 'Male',
-                    x: 0.17,
-                    y: 0.5,
+                    x: 0.1119,
+                    y: 0.50,
                   },
                   {
                     font: {
-                      size: 20,
+                      size: 30,
+                    },
+                    showarrow: false,
+                    text: 'Total',
+                    x: 0.50,
+                    y: 0.50,
+                  },
+                  {
+                    font: {
+                      size: 30,
                     },
                     showarrow: false,
                     text: 'Female',
-                    x: 0.82,
-                    y: 0.5,
-                  }
+                    x: 0.90,
+                    y: 0.50,
+                  },
                 ],
-                grid: { rows: 1, columns: 2, pattern: 'independent' },
+                grid: { rows: 1, columns: 3, pattern: 'independent' },
                 title: {
                   text: 'Age Distribution for UK Data (1851)',
                   font: {
                     family: 'Courier New, monospace',
-                    size: 14,
+                    size: 18,
                     color: '#7f7f7f',
                   },
                 },
                 height: 500,
-                width: 900,
+                width: 1400,
               }
             }
           />
         </Col>
       </Row>
     </Container>
-
   );
 };
 
