@@ -249,7 +249,7 @@ const UKcensus1851Set = () => {
                 width: 1000,
                 height: 500,
                 title: {
-                  text: 'Naples in the Time of Cholera 1884-1911',
+                  text: 'Census Age Data',
                   font: {
                     family: 'Courier New, monospace',
                     size: 18,
@@ -307,9 +307,9 @@ const UKcensus1851Set = () => {
                 },
                 barmode: 'group',
                 width: 500,
-                height: 500,
+                height: 400,
                 title: {
-                  text: 'Naples in the Time of Cholera 1884-1911',
+                  text: 'Total Census Age Data',
                   font: {
                     family: 'Courier New, monospace',
                     size: 18,
@@ -318,7 +318,7 @@ const UKcensus1851Set = () => {
                 },
                 xaxis: {
                   title: {
-                    text: 'Age Range',
+                    text: 'Gender',
                     font: {
                       family: 'Courier New, monospace',
                       size: 18,
@@ -367,7 +367,7 @@ const UKcensus1851Set = () => {
                 marker: {
                   colors: ['#47B5FF', '#FF74B1'],
                 },
-                font: { family: 'Arial', size: 25, color: ['black'] },
+                font: { family: 'Arial', size: 105, color: ['black'] },
                 textposition: 'inside',
                 textinfo: 'label+percent+name',
                 domain: {
