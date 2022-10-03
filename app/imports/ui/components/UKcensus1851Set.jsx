@@ -22,7 +22,9 @@ const UKcensus1851Set = () => {
   const ageRange = testng.map((data) => data.age);
   ageRange.push('<b>Total</b>');
   const male = testng.map((data) => numeral(data.male).format('0,0'));
+  const pieChartMale = testng.map((data) => data.male);
   const female = testng.map((data) => numeral(data.female).format('0,0'));
+  const pieChartFemale = testng.map((data) => data.female);
 
   const totalMale = (data) => {
     let temp = 0;
@@ -97,6 +99,75 @@ const UKcensus1851Set = () => {
         <div className="d-flex" style={{ height: '30rem' }}>
           <div className="vr" />
         </div>
+        <Col md={6} lg={6} xl={6} xxl={6}>
+          <Plot
+            data={[
+              {
+                values: pieChartMale,
+                labels: ageRange,
+                type: 'pie',
+                name: 'Male',
+                hole: '.4',
+                textposition: 'inside',
+                textinfo: 'label+percent+name',
+
+                domain: {
+                  row: 0,
+                  column: 0,
+                },
+              },
+              {
+                values: pieChartFemale,
+                labels: ageRange,
+                type: 'pie',
+                name: 'Female',
+                textposition: 'inside',
+                hole: '.4',
+                textinfo: 'label+percent+name',
+                domain: {
+                  row: 1,
+                  column: 1,
+                },
+              },
+            ]}
+            layout={
+              {
+                showlegend: false,
+                annotations: [
+                  {
+                    font: {
+                      size: 20,
+                    },
+                    showarrow: false,
+                    text: 'Male',
+                    x: 0.17,
+                    y: 0.5,
+                  },
+                  {
+                    font: {
+                      size: 20,
+                    },
+                    showarrow: false,
+                    text: 'Female',
+                    x: 0.82,
+                    y: 0.5,
+                  }
+                ],
+                grid: { rows: 1, columns: 2, pattern: 'independent' },
+                title: {
+                  text: 'Age Distribution for UK Data (1851)',
+                  font: {
+                    family: 'Courier New, monospace',
+                    size: 14,
+                    color: '#7f7f7f',
+                  },
+                },
+                height: 500,
+                width: 900,
+              }
+            }
+          />
+        </Col>
       </Row>
     </Container>
 
