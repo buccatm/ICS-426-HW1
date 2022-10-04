@@ -255,7 +255,7 @@ const Part3Stuff = () => {
       '1,-0.138474,51.512311\n' +
       '1,-0.138123,51.511998\n' +
       '1,-0.137762,51.511856');
-  const pumpLocation = d3.csvParse('longitude, latitude\n' +
+  const pumpLocation = d3.csvParse('longitude,latitude\n' +
       '-0.136668,51.513341\n' +
       '-0.139586,51.513876\n' +
       '-0.139671,51.514906\n' +
@@ -266,10 +266,15 @@ const Part3Stuff = () => {
       '-0.138199,51.511295');
 
   const lats = deathLocation.map((datas) => datas.latitude.toString());
+  const latPumps = pumpLocation.map((datas) => datas.latitude.toString());
+
   const long = deathLocation.map((datas) => datas.longitude.toString());
+  const longPumps = pumpLocation.map((datas) => datas.longitude.toString());
+
   const counts = deathLocation.map((datas) => datas.cases);
-  const radius = deathLocation.map((datas) => datas.cases / 50000);
-  console.log(lats, long, pumpLocation);
+  const countsLabel = deathLocation.map((datas) => `Number of Cases: ${datas.cases}`);
+  const radius = deathLocation.map((datas) => datas.cases * 2);
+  console.log(latPumps, longPumps);
 
   return (
     <Container fluid>
@@ -280,26 +285,51 @@ const Part3Stuff = () => {
             type: 'scattermapbox',
             lon: long,
             lat: lats,
-              name: 'deaths',
+            name: 'Case Sightings',
             mode: 'markers',
-              locations: radius,
             marker: {
               size: radius,
+              color: counts,
+              cauto: true,
+              colorscale: 'Greens',
+              colorbar: {
+                title: 'Case Intensity',
+                ticksuffix: '%',
+                showticksuffix: 'last',
+              },
             },
-            text: ['Montreal'],
+
+            text: countsLabel,
+          },
+          {
+            type: 'scattermapbox',
+            lon: longPumps,
+            lat: latPumps,
+            name: 'Water',
+            mode: 'markers',
+            marker: {
+              color: 'blue',
+              size: 10,
+            },
+            text: 'Water Pump',
           },
         ]}
         layout={
           {
+            legend: {
+              orientation: 'h',
+            },
+            showlegend: true,
             resolution: 50,
-              height: 700,
-              width: 1100,
+            height: 700,
+            width: 1100,
             hovermode: 'closest',
+
             mapbox: {
               bearing: 0,
               center: {
-                  lon: [deathLocation[0].longitude].toString(),
-                  lat: [deathLocation[0].latitude].toString(),
+                lon: [deathLocation[0].longitude].toString(),
+                lat: [deathLocation[0].latitude].toString(),
               },
               pitch: 0,
               zoom: 16,
