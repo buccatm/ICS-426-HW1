@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Col, Row } from 'react-bootstrap';
+import { Container } from 'react-bootstrap';
 import * as d3 from 'd3-dsv';
 import Plot from 'react-plotly.js';
 /** The Footer appears at the bottom of every page. Rendered by the App Layout component. */
@@ -277,7 +277,7 @@ const Part3Stuff = () => {
 
   return (
     <Container fluid>
-      <h1 style={{ textAlign: 'left' }}>Geo Map</h1>
+      <h1 style={{ textAlign: 'left' }}>Mapping of Cholera Outbreaks (London, 1854)</h1>
       <Plot
         data={[
           {
@@ -319,9 +319,8 @@ const Part3Stuff = () => {
               orientation: 'h',
             },
             showlegend: true,
-            resolution: 50,
             height: 700,
-            width: 1100,
+            width: 1500,
             hovermode: 'closest',
 
             mapbox: {
@@ -332,6 +331,8 @@ const Part3Stuff = () => {
               },
               pitch: 0,
               zoom: 16,
+              maxZoom: 17,
+              minZoom: 16,
             },
           }
         }
@@ -342,7 +343,6 @@ const Part3Stuff = () => {
         }
 
       />
-
     </Container>
 
   );
