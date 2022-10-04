@@ -19,6 +19,7 @@ const UKcensus1851Set = () => {
       '80+,40772,55704');
 
   const ageRange = testng.map((data) => data.age);
+  const ageRangePieChart = testng.map((data) => `Ages ${data.age}`);
   ageRange.push('<b>Total</b>');
   const male = testng.map((data) => numeral(data.male).format('0,0'));
   const temp1 = testng.map((data) => numeral(data.male).format('0,0'));
@@ -120,7 +121,7 @@ const UKcensus1851Set = () => {
         <div className="d-flex" style={{ height: '30rem' }}>
           <div className="vr" />
         </div>
-        <Col xxl="5" xl="5" lg="5" md="5" sm="auto" className={showIndiv}>
+        <Col xxl="3" xl="3" lg="3" md="3" sm="auto" className={showIndiv} style={ { marginRight: '3rem'}}>
           <Plot
             data={[
               {
@@ -340,17 +341,17 @@ const UKcensus1851Set = () => {
           />
         </Col>
       </Row>
-      <Row xxl="auto" xl="auto" lg="auto" md="auto" sm="auto" xs={1}>
+      <Row xxl="auto" xl="auto" lg="auto" md="auto" sm="auto" xs={1} className={'justify-content-center'}>
         <Col>
           <Plot
             data={[
               {
                 values: pieChartMale,
-                labels: ageRange,
+                labels: ageRangePieChart,
                 type: 'pie',
                 name: 'Male',
                 hole: '.4',
-                textposition: 'inside',
+                textposition: 'outside',
                 textinfo: 'label+percent+name',
                 domain: {
                   row: 0,
@@ -376,10 +377,10 @@ const UKcensus1851Set = () => {
               },
               {
                 values: pieChartFemale,
-                labels: ageRange,
+                labels: ageRangePieChart,
                 type: 'pie',
                 name: 'Female',
-                textposition: 'inside',
+                textposition: 'outside',
                 hole: '.4',
                 textinfo: 'label+percent+name',
                 domain: {

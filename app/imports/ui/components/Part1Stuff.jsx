@@ -194,8 +194,8 @@ const Part1Stuff = () => {
               },
             ]}
             layout={{
-              width: '960',
-              height: '790',
+              width: '990',
+              height: '760',
               hovermode: 'x',
               legend: {
                 orientation: 'h',
