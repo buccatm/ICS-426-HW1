@@ -274,7 +274,6 @@ const Part3Stuff = () => {
   const counts = deathLocation.map((datas) => datas.cases);
   const countsLabel = deathLocation.map((datas) => `Number of Cases: ${datas.cases}`);
   const radius = deathLocation.map((datas) => datas.cases * 2);
-  console.log(latPumps, longPumps);
 
   return (
     <Container fluid>

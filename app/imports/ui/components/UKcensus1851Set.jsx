@@ -53,7 +53,6 @@ const UKcensus1851Set = () => {
   const [showIndiv, setShowIndiv] = useState('d-block');
   const [showOverAll, setShowOverAll] = useState('d-none');
 
-  console.log(pieChartTotalFemale, pieChartTotalMale);
 
   const hide = () => {
     setShowIndiv('d-none');
