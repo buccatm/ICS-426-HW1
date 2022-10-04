@@ -51,9 +51,11 @@ const Footer = () => (
               Datas
             </h3>
             <ListGroup variant="flush">
-              <ListGroup.Item>Data 1</ListGroup.Item>
-              <ListGroup.Item>Data 2</ListGroup.Item>
-              <ListGroup.Item>Data 3</ListGroup.Item>
+              <ListGroup.Item>CholeraDeath.tsv</ListGroup.Item>
+              <ListGroup.Item>CholeraDeathLocations.cvs</ListGroup.Item>
+              <ListGroup.Item>CholeraPumpLocations.cvs</ListGroup.Item>
+              <ListGroup.Item>NaplesCholeraAgeSexData.tsv</ListGroup.Item>
+              <ListGroup.Item>UK_Census1851.csv</ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>
