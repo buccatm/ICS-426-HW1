@@ -24,13 +24,13 @@ const Landing = () => {
   };
 
   return (
-    <Container id={PAGE_IDS.LANDING} className="py-3">
-      <Container style={{ marginBottom: '5rem' }}>
+    <Container id={PAGE_IDS.LANDING} className="py-3" fluid>
         <Tabs
           id="controlled-tab-example"
           activeKey={key}
           onSelect={(k) => setKey(k)}
           className="mb-3"
+          fill
         >
           <Tab eventKey="Home" title="Part 1">
             <Part1Stuff />
@@ -44,7 +44,6 @@ const Landing = () => {
             <Part3Stuff />
           </Tab>
         </Tabs>
-      </Container>
       <AboutMe />
     </Container>
   );

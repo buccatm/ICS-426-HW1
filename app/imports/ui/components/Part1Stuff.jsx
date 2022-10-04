@@ -89,30 +89,32 @@ const Part1Stuff = () => {
     return tot;
   });
   return (
-    <Container>
+    <Container fluid>
       <h1 style={{ textAlign: 'left' }}>Cholera Fatalities 1854</h1>
-      <Row xxl="auto" xl="auto" lg="auto" md="auto" sm="auto" xs={1}>
-        <Col md={4} lg={4} xl={4} xxl={4} style={{ marginRight: '4rem' }}>
+      <Row xxl="auto" xl="auto" lg="auto" md="auto" sm="auto">
+        <Col md={4} lg={4} xl={4} xxl={4} style={{ marginRight: '0rem' }}>
           <Plot
             data={[
               {
                 type: 'table',
                 name: 'Death',
-                columnwidth: [50, 50, 50, 50, 50],
+                columnwidth: [150, 80, 80, 100, 100],
                 columnorder: [0, 1, 2, 3, 4],
                 header: {
                   values: [...testng.columns, 'Total Attacks', 'Total Deaths'],
                   align: 'center',
+                  valign: 'center',
                   line: { width: 1, color: 'rgb(50, 50, 50)' },
                   fill: { color: ['rgb(81,88,217)'] },
-                  font: { family: 'Arial', size: 11, color: 'white' },
+                  font: { family: 'Arial', size: 16, color: 'white' },
                 },
                 cells: {
                   values: [dates, attacks, deaths, totalAttacks, totalDeaths],
+                  height: 25,
                   align: ['left', 'right', 'right', 'right', 'right'],
-                  line: { color: 'black', width: 1 },
+                  line: { color: 'black', width: 0.5 },
                   fill: { color: ['rgba(228, 222, 249, 0.65)'] },
-                  font: { family: 'Arial', size: 10, color: ['black'] },
+                  font: { family: 'Arial', size: 16, color: ['black'] },
                 },
                 x: dates,
                 y: deaths,
@@ -121,7 +123,7 @@ const Part1Stuff = () => {
             ]}
             layout={{
               width: 500,
-              height: 540,
+              height: 600,
               title: {
                 text: 'Cholera Attacks Data Sheet (1854)',
                 font: {
@@ -152,7 +154,7 @@ const Part1Stuff = () => {
               } }}
           />
         </Col>
-        <div className="d-flex" style={{ height: '35rem' }}>
+        <div className="d-flex" style={{ height: '35rem', marginRight: '5rem' }}>
           <div className="vr" />
         </div>
         <Col md={6} lg={6} xl={6} xxl={6}>
@@ -193,8 +195,14 @@ const Part1Stuff = () => {
             ]}
             layout={{
               width: '960',
-              height: '540',
+              height: '790',
               hovermode: 'x',
+              legend: {
+                orientation: 'h',
+                xanchor: 'center',
+                y: 20,
+                x: 0.5,
+              },
               title: {
                 text: 'Cholera Attacks (1854)',
                 font: {
@@ -230,6 +238,7 @@ const Part1Stuff = () => {
           />
         </Col>
       </Row>
+
     </Container>
 
   );
