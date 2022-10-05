@@ -50,12 +50,78 @@ const Footer = () => (
             <h3>
               Datas
             </h3>
-            <ListGroup variant="flush">
-              <ListGroup.Item>CholeraDeath.tsv</ListGroup.Item>
-              <ListGroup.Item>CholeraDeathLocations.cvs</ListGroup.Item>
-              <ListGroup.Item>CholeraPumpLocations.cvs</ListGroup.Item>
-              <ListGroup.Item>NaplesCholeraAgeSexData.tsv</ListGroup.Item>
-              <ListGroup.Item>UK_Census1851.csv</ListGroup.Item>
+            <ListGroup variant="flush" style={ { overflow: 'scroll', overflowX: 'hidden', height: '400px' }}>
+              <ListGroup.Item>
+                <div>
+                  <h3>
+                    CholeraDeath.tsv
+                  </h3>
+                  <h6>
+                    <p style={{ width: '20rem' }}>
+                      Cholera Attacks in London, 1854. This data contains the number of attacks,
+                      deaths for each day.
+                    </p>
+                    <a href="https://en.wikipedia.org/wiki/1854_Broad_Street_cholera_outbreak" target="_blank" rel="noreferrer">
+                      Related Article Here
+                    </a>
+                  </h6>
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <div>
+                  <h3>
+                    CholeraDeathLocations.cvs
+                  </h3>
+                  <h6>
+                    <p style={{ width: '20rem' }}>
+                      Cholera Attacks in London, 1854. This data contains the location of the attacks
+                      and the number of Cholera cases that occurred at the location.
+                    </p>
+                  </h6>
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <div>
+                  <h3>
+                    CholeraPumpLocations.cvs
+                  </h3>
+                  <h6>
+                    <p style={{ width: '20rem' }}>
+                      Cholera Attacks in London, 1854. This data contains the location of the pumps.
+                    </p>
+                  </h6>
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <div>
+                  <h3>
+                    NaplesCholeraAgeSexData.tsv
+                  </h3>
+                  <h6>
+                    <p style={{ width: '20rem' }}>
+                      Naples in the Time of Cholera 1884-1911, deaths per 10,000 inhabitants of that age group.
+                    </p>
+                  </h6>
+                  <a href="http://assets.cambridge" target="_blank" rel="noreferrer">
+                    Related Article Here
+                  </a>
+                </div>
+              </ListGroup.Item>
+              <ListGroup.Item>
+                <div>
+                  <h3>
+                    UK_Census1851.csv
+                  </h3>
+                  <h6>
+                    <p style={{ width: '20rem' }}>
+                      UK census 1851
+                    </p>
+                  </h6>
+                  <a href="http://www.visionofbritain.org.uk/" target="_blank" rel="noreferrer">
+                    Related Article Here
+                  </a>
+                </div>
+              </ListGroup.Item>
             </ListGroup>
           </Col>
         </Row>
