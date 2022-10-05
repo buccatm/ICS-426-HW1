@@ -101,7 +101,7 @@ const UKcensus1851Set = () => {
                 width: 500,
                 height: 500,
                 title: {
-                  text: 'Naples in the Time of Cholera 1884-1911 DataSheet',
+                  text: 'UK census 1851 DataSheet',
                   font: {
                     family: 'Courier New, monospace',
                     size: 14,
