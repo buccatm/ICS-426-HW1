@@ -26,3 +26,9 @@ body {
   padding-top: 10px;
   padding-bottom: 20px;
 }
+
+.section-3 {
+  background-color: blue;
+  color: wheat;
+  height: 100%;
+}

@@ -8,20 +8,24 @@ import NotFound from '../pages/NotFound';
 import NavBar from '../components/NavBar';
 import { ROLE } from '../../api/role/Role';
 import Footer from '../components/Footer';
+import {ScrollContainer} from "react-scroll-motion";
 
 /** Top-level layout component for this application. Called in imports/startup/client/startup.jsx. */
 const App = () => (
-  <Router>
-    <div className="d-flex flex-column min-vh-100">
-      <NavBar />
-      <Routes>
-        <Route exact path="/" element={<Landing />} />
-        <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
-        <Route path="*" element={<NotFound />} />
-      </Routes>
-      <Footer />
-    </div>
-  </Router>
+    <ScrollContainer>
+      <Router>
+        <div className="d-flex flex-column min-vh-100">
+          <NavBar />
+          <Routes>
+            <Route exact path="/" element={<Landing />} />
+            <Route path="/home" element={<ProtectedRoute><Landing /></ProtectedRoute>} />
+            <Route path="*" element={<NotFound />} />
+          </Routes>
+          <Footer />
+        </div>
+      </Router>
+    </ScrollContainer>
+
 );
 
 /*

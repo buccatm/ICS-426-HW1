@@ -20,6 +20,7 @@
     "react-plotly.js": "^2.6.0",
     "react-router": "^6.3.0",
     "react-router-dom": "^6.3.0",
+    "react-scroll-motion": "^0.3.0",
     "simpl-schema": "^1.12.2",
     "sweetalert": "^2.1.2",
     "uniforms": "^3.9.1",
