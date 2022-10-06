@@ -83,7 +83,7 @@ const UKcensus1851Set = () => {
                   values: ['Age', 'Male', 'Female'],
                   align: 'center',
                   line: { width: 1, color: 'rgb(50, 50, 50)' },
-                  fill: { color: ['#D1D1D1', '#47B5FF', '#FF74B1'] },
+                  fill: { color: ['#D1D1D1', '#3c65ec', '#f39223'] },
                   font: { family: 'Arial', size: 16, color: 'white' },
                 },
                 cells: {
@@ -91,7 +91,7 @@ const UKcensus1851Set = () => {
                   align: ['left', 'right', 'right'],
                   height: 25,
                   line: { color: 'black', width: 1 },
-                  fill: { color: ['#F5EDDC', '#DFF6FF', '#FFD6EC'] },
+                  fill: { color: ['#F5EDDC', '#7691d5', '#f69764'] },
                   font: { family: 'Arial', size: 15, color: ['black'] },
                 },
               },
@@ -130,7 +130,7 @@ const UKcensus1851Set = () => {
                 name: 'Male',
                 type: 'bar',
                 marker: {
-                  color: '#47B5FF',
+                  color: '#7691d5',
                 },
               },
             ]}
@@ -179,7 +179,7 @@ const UKcensus1851Set = () => {
                 name: 'Female',
                 type: 'bar',
                 marker: {
-                  color: '#FF74B1',
+                  color: '#f69764',
                 },
               },
             ]}
@@ -228,7 +228,7 @@ const UKcensus1851Set = () => {
                 name: 'Male',
                 type: 'bar',
                 marker: {
-                  color: '#47B5FF',
+                  color: '#7691d5',
                 },
               },
               {
@@ -237,7 +237,7 @@ const UKcensus1851Set = () => {
                 name: 'Female',
                 type: 'bar',
                 marker: {
-                  color: '#FF74B1',
+                  color: '#f69764',
                 },
               },
             ]}
@@ -287,7 +287,7 @@ const UKcensus1851Set = () => {
                 name: 'Male',
                 type: 'bar',
                 marker: {
-                  color: '#47B5FF',
+                  color: '#0a90ea',
                 },
               },
               {
@@ -296,7 +296,7 @@ const UKcensus1851Set = () => {
                 name: 'Female',
                 type: 'bar',
                 marker: {
-                  color: '#FF74B1',
+                  color: '#f69764',
                 },
               },
             ]}
@@ -365,7 +365,7 @@ const UKcensus1851Set = () => {
                 name: 'Total',
                 hole: '.4',
                 marker: {
-                  colors: ['#47B5FF', '#FF74B1'],
+                  colors: ['#0992ef', '#f69764'],
                 },
                 font: { family: 'Arial', size: 105, color: ['black'] },
                 textposition: 'inside',

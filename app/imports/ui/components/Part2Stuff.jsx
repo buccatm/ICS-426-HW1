@@ -39,7 +39,7 @@ const Part2Stuff = () => {
                   values: ['Age', 'Male', 'Female'],
                   align: 'center',
                   line: { width: 1, color: 'rgb(50, 50, 50)' },
-                  fill: { color: ['#D1D1D1', '#47B5FF', '#FF74B1'] },
+                  fill: { color: ['#D1D1D1', '#373ac2', '#f69764'] },
                   font: { family: 'Arial', size: 16, color: 'white' },
                 },
                 cells: {
@@ -47,7 +47,7 @@ const Part2Stuff = () => {
                   align: ['left', 'right', 'right'],
                   height: 25,
                   line: { color: 'black', width: 1 },
-                  fill: { color: ['#F5EDDC', '#DFF6FF', '#FFD6EC'] },
+                  fill: { color: ['#F5EDDC', '#7691d5', '#cc955d'] },
                   font: { family: 'Arial', size: 15, color: ['black'] },
                 },
               },
@@ -80,7 +80,7 @@ const Part2Stuff = () => {
                 name: 'Male',
                 type: 'bar',
                 marker: {
-                  color: '#47B5FF',
+                  color: '#373ac2',
                 },
               },
               {
@@ -89,7 +89,7 @@ const Part2Stuff = () => {
                 name: 'Female',
                 type: 'bar',
                 marker: {
-                  color: '#FF74B1',
+                  color: '#f69764',
                 },
               },
             ]}
